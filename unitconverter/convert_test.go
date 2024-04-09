@@ -1,4 +1,4 @@
-package amountconverter
+package unitconverter
 
 import (
 	"testing"

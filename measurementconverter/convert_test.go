@@ -1,4 +1,4 @@
-package distanceconverter
+package measurementconverter
 
 import (
 	"testing"

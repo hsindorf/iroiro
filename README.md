@@ -10,19 +10,19 @@ Types of conversions:
 
 # Functionality
 
-`amountconvert` does the overall functionality called by the LINE chatbot but the other packages can be used.
+`unitconverter` does the overall functionality called by the LINE chatbot but the other packages can be used.
 
-## `amountconverter` package
-Utilities for taking input and parsing whether it's only a number, a currency amount, or a measurement. Uses functions from `counting`, `currencyconverter`, `distanceconverter` and `stringutils` to both convert the values, and make them readable. 
-
-## `counting` package
+## `countingconverter` package
 Number parsing and conversion to JP units. Function to parse string in various formats (e.g. 135k, 1万) and convert to a float, and function to convert to Japanese number. Uses `stringutils` for prettifying some outputs.
 
 ## `currencyconverter` package
 Utilities to convert from JPY <-> USD. It uses a rate passed in by caller.
 
-## `distanceconverter` package
+## `measurementconverter` package
 Utilities to convert imperial to metric and vice versa. Uses `stringutils` for prettifying the output.
 
 ## `stringutils` package
 Utilities for trimming floats, and for adding commas to big numbers.
+
+## `unitconverter` package
+Utilities for taking input and parsing whether it's only a number, a currency amount, or a measurement. Uses functions from `counting`, `currencyconverter`, `distanceconverter` and `stringutils` to both convert the values, and make them readable. 

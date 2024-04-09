@@ -1,10 +1,10 @@
-package distanceconverter
+package measurementconverter
 
 import (
 	"fmt"
 	"math"
 
-	"github.com/hsindorf/iroiro/counting"
+	"github.com/hsindorf/iroiro/countingconverter"
 	"github.com/hsindorf/iroiro/stringutils"
 )
 
@@ -41,8 +41,8 @@ func CMToIn(cm float64, useJPUnits bool) string {
 		inDecimal := 12 * (ft - ftFloor)
 
 		if useJPUnits {
-			inString := fmt.Sprintf("%v", counting.ConvertToLargestUnit(in))
-			ftString := fmt.Sprintf("%v", counting.ConvertToLargestUnit(ftFloor))
+			inString := fmt.Sprintf("%v", countingconverter.ConvertToLargestUnit(in))
+			ftString := fmt.Sprintf("%v", countingconverter.ConvertToLargestUnit(ftFloor))
 			return fmt.Sprintf("%vin (%vft %vin)", inString, ftString, stringutils.Commafy(inDecimal))
 		}
 
@@ -58,7 +58,7 @@ func InToCM(in float64, useJPUnits bool) string {
 		m := cm / 100
 
 		if useJPUnits {
-			return fmt.Sprintf("%vm", counting.ConvertToLargestUnit(m))
+			return fmt.Sprintf("%vm", countingconverter.ConvertToLargestUnit(m))
 		}
 
 		return fmt.Sprintf("%vm", stringutils.Commafy(m))
@@ -71,7 +71,7 @@ func MtoFt(m float64, useJPUnits bool) string {
 	ft := m * mToFtRate
 
 	if useJPUnits {
-		return fmt.Sprintf("%vft", counting.ConvertToLargestUnit(ft))
+		return fmt.Sprintf("%vft", countingconverter.ConvertToLargestUnit(ft))
 	}
 	return fmt.Sprintf("%vft", stringutils.Commafy(ft))
 }
@@ -81,7 +81,7 @@ func FtToM(ft float64, useJPUnits bool) string {
 	m := ft / mToFtRate
 
 	if useJPUnits {
-		return fmt.Sprintf("%vm", counting.ConvertToLargestUnit(m))
+		return fmt.Sprintf("%vm", countingconverter.ConvertToLargestUnit(m))
 	}
 	return fmt.Sprintf("%vm", stringutils.Commafy(m))
 }
@@ -91,7 +91,7 @@ func KMtoMi(km float64, useJPUnits bool) string {
 	mi := km * kmToMiRate
 
 	if useJPUnits {
-		return fmt.Sprintf("%vmi", counting.ConvertToLargestUnit(mi))
+		return fmt.Sprintf("%vmi", countingconverter.ConvertToLargestUnit(mi))
 	}
 	return fmt.Sprintf("%vmi", stringutils.Commafy(mi))
 }
@@ -101,7 +101,7 @@ func MiToKM(mi float64, useJPUnits bool) string {
 	km := mi / kmToMiRate
 
 	if useJPUnits {
-		return fmt.Sprintf("%vkm", counting.ConvertToLargestUnit(km))
+		return fmt.Sprintf("%vkm", countingconverter.ConvertToLargestUnit(km))
 	}
 	return fmt.Sprintf("%vkm", stringutils.Commafy(km))
 }
