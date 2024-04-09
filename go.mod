@@ -1,4 +1,4 @@
-module github.com/hsindorf/iroiro-converter
+module github.com/hsindorf/iroiro
 
 go 1.20
 

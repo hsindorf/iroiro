@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/hsindorf/iroiro-converter/counting"
-	"github.com/hsindorf/iroiro-converter/stringutils"
+	"github.com/hsindorf/iroiro/counting"
+	"github.com/hsindorf/iroiro/stringutils"
 )
 
 const (
