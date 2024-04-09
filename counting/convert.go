@@ -3,7 +3,7 @@ package counting
 import (
 	"fmt"
 
-	"github.com/hsindorf/iroiro-converter/stringutils"
+	"github.com/hsindorf/iroiro/stringutils"
 )
 
 // ConvertToLargestUnit converts a float to a string by Japanese counting system

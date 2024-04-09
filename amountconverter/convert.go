@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hsindorf/iroiro-converter/counting"
-	"github.com/hsindorf/iroiro-converter/currencyconverter"
-	"github.com/hsindorf/iroiro-converter/distanceconverter"
-	"github.com/hsindorf/iroiro-converter/stringutils"
+	"github.com/hsindorf/iroiro/counting"
+	"github.com/hsindorf/iroiro/currencyconverter"
+	"github.com/hsindorf/iroiro/distanceconverter"
+	"github.com/hsindorf/iroiro/stringutils"
 	"golang.org/x/exp/slices"
 )
 
