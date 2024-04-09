@@ -1,4 +1,4 @@
-package counting
+package countingconverter
 
 import (
 	"testing"

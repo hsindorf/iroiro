@@ -1,13 +1,13 @@
-package amountconverter
+package unitconverter
 
 import (
 	"errors"
 	"fmt"
 	"strings"
 
-	"github.com/hsindorf/iroiro/counting"
+	"github.com/hsindorf/iroiro/countingconverter"
 	"github.com/hsindorf/iroiro/currencyconverter"
-	"github.com/hsindorf/iroiro/distanceconverter"
+	"github.com/hsindorf/iroiro/measurementconverter"
 	"github.com/hsindorf/iroiro/stringutils"
 	"golang.org/x/exp/slices"
 )
@@ -20,23 +20,23 @@ import (
 func Convert(amount string, rate float64, useJPUnits bool) (string, error) {
 	currency, parsedAmount := ParseAmount(amount)
 
-	num, err := counting.Parse(parsedAmount)
+	num, err := countingconverter.Parse(parsedAmount)
 	if err != nil {
 		return "", err
 	}
 
 	if currency == "" {
-		if counting.IsJapaneseNumber((parsedAmount)) {
+		if countingconverter.IsJapaneseNumber((parsedAmount)) {
 			return fmt.Sprintf("%v", stringutils.Commafy(num)), nil
 		} else {
-			return counting.ConvertToLargestUnit(num), nil
+			return countingconverter.ConvertToLargestUnit(num), nil
 		}
 	}
 
 	if currency == "$" {
 		amountInYen := currencyconverter.DollarsToYen(num, rate)
 		if useJPUnits {
-			return fmt.Sprintf("%v円", counting.ConvertToLargestUnit(amountInYen)), nil
+			return fmt.Sprintf("%v円", countingconverter.ConvertToLargestUnit(amountInYen)), nil
 		}
 		return fmt.Sprintf("%v円", stringutils.Commafy(amountInYen)), nil
 	}
@@ -44,13 +44,13 @@ func Convert(amount string, rate float64, useJPUnits bool) (string, error) {
 	if currency == "円" {
 		amountInDollars := currencyconverter.YenToDollars(num, rate)
 		if useJPUnits {
-			return fmt.Sprintf("$%v", counting.ConvertToLargestUnit(amountInDollars)), nil
+			return fmt.Sprintf("$%v", countingconverter.ConvertToLargestUnit(amountInDollars)), nil
 		}
 		return fmt.Sprintf("$%v", stringutils.Commafy(amountInDollars)), nil
 	}
 
 	if slices.Contains([]string{"cm", "in", "m", "ft", "km", "mi"}, currency) {
-		return distanceconverter.ConvertDistance(currency, num, useJPUnits), nil
+		return measurementconverter.ConvertDistance(currency, num, useJPUnits), nil
 	}
 
 	return "", errors.New("something bad happened")
