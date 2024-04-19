@@ -87,13 +87,20 @@ func ParseAmount(amount string) (string, string) {
 			twoCharSuffix == "km" ||
 			twoCharSuffix == "mi" {
 			return twoCharSuffix, string(runeAmount[:len(runeAmount)-2])
-			// TODO: add temp
 		}
 	}
 
 	if string(runeAmount[0]) == "$" ||
 		string(runeAmount[0]) == "＄" {
 		return "$", string(runeAmount[1:])
+	}
+
+	if strings.ToLower(string(runeAmount[len(runeAmount)-1])) == "c" {
+		return "c", string(runeAmount[:len(runeAmount)-1])
+	}
+
+	if strings.ToLower(string(runeAmount[len(runeAmount)-1])) == "f" {
+		return "f", string(runeAmount[:len(runeAmount)-1])
 	}
 
 	if string(runeAmount[len(runeAmount)-1]) == "円" {

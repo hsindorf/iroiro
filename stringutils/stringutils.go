@@ -23,6 +23,12 @@ func TruncateToTwo(input float64) string {
 
 // Commafy takes a float, truncates to two and adds commas to whole number
 func Commafy(num float64) string {
+	negative := num < 0
+
+	if negative {
+		num = -num
+	}
+
 	wholeNumber := math.Floor(num)
 	wholeNumberInt := int(wholeNumber)
 	decimal := num - wholeNumber
@@ -30,6 +36,10 @@ func Commafy(num float64) string {
 
 	p := message.NewPrinter(language.English)
 	numWithCommas := p.Sprintf("%v%v", wholeNumberInt, decimalNoZero)
+
+	if negative {
+		numWithCommas = fmt.Sprintf("-%v", numWithCommas)
+	}
 
 	return numWithCommas
 }

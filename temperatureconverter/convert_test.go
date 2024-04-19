@@ -19,6 +19,11 @@ func TestCToF(t *testing.T) {
 			want: "18,032°F",
 		},
 		{
+			name: "converts C to F, negative number",
+			c:    -101.4,
+			want: "-150.52°F",
+		},
+		{
 			name:       "converts C to F, use jp units true",
 			c:          10000.0,
 			useJPUnits: true,
@@ -43,6 +48,11 @@ func TestFToC(t *testing.T) {
 			name: "converts F to C",
 			f:    100000.0,
 			want: "55,537.78°C",
+		},
+		{
+			name: "converts F to C, negative number",
+			f:    -100.0,
+			want: "-73.33°C",
 		},
 		{
 			name:       "converts F to C, use jp units true",

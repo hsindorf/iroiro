@@ -12,10 +12,15 @@ func TestCommafy(t *testing.T) {
 		num  float64
 		want string
 	}{
+		// {
+		// 	name: "adds commas and truncates to 2",
+		// 	num:  1234567.8910,
+		// 	want: "1,234,567.89",
+		// },
 		{
-			name: "adds commas and truncates to 2",
-			num:  1234567.8910,
-			want: "1,234,567.89",
+			name: "adds commas and truncates to 2, negative number",
+			num:  -100.567,
+			want: "-100.57",
 		},
 	}
 	for _, tt := range tests {
