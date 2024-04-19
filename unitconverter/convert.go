@@ -10,6 +10,7 @@ import (
 	"github.com/hsindorf/iroiro/measurementconverter"
 	"github.com/hsindorf/iroiro/stringutils"
 	"github.com/hsindorf/iroiro/temperatureconverter"
+	"github.com/hsindorf/iroiro/weightconverter"
 	"golang.org/x/exp/slices"
 )
 
@@ -60,6 +61,10 @@ func Convert(amount string, rate float64, useJPUnits bool) (string, error) {
 		return temperatureconverter.ConvertTemperature(currency, num, useJPUnits), nil
 	}
 
+	if slices.Contains([]string{"kg", "lbs"}, currency) {
+		return weightconverter.ConvertWeight(currency, num, useJPUnits), nil
+	}
+
 	return "", errors.New("something bad happened")
 }
 
@@ -79,6 +84,16 @@ func ParseAmount(amount string) (string, string) {
 
 	runeAmount := []rune(amount)
 
+	if len(runeAmount) > 3 {
+		threeCharSuffix := string(runeAmount[len(runeAmount)-3]) +
+			string(runeAmount[len(runeAmount)-2]) +
+			string(runeAmount[len(runeAmount)-1])
+		fmt.Println(threeCharSuffix)
+		if threeCharSuffix == "lbs" {
+			return threeCharSuffix, string(runeAmount[:len(runeAmount)-3])
+		}
+	}
+
 	if len(runeAmount) > 2 {
 		twoCharSuffix := string(runeAmount[len(runeAmount)-2]) + string(runeAmount[len(runeAmount)-1])
 		if twoCharSuffix == "ドル" {
@@ -88,7 +103,8 @@ func ParseAmount(amount string) (string, string) {
 			twoCharSuffix == "in" ||
 			twoCharSuffix == "ft" ||
 			twoCharSuffix == "km" ||
-			twoCharSuffix == "mi" {
+			twoCharSuffix == "mi" ||
+			twoCharSuffix == "kg" {
 			return twoCharSuffix, string(runeAmount[:len(runeAmount)-2])
 		}
 	}
