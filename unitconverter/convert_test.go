@@ -236,6 +236,16 @@ func TestConvert(t *testing.T) {
 			want:   "-12.22°C",
 		},
 		{
+			name:   "weight, parses kg",
+			amount: "10kg",
+			want:   "22.05lbs",
+		},
+		{
+			name:   "weight, parses lbs",
+			amount: "10lbs",
+			want:   "4.54kg",
+		},
+		{
 			name:    "error if both currencies present",
 			amount:  "$100円",
 			want:    "",

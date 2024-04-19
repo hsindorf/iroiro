@@ -10,6 +10,7 @@ import (
 	"github.com/hsindorf/iroiro/measurementconverter"
 	"github.com/hsindorf/iroiro/stringutils"
 	"github.com/hsindorf/iroiro/temperatureconverter"
+	"github.com/hsindorf/iroiro/weightconverter"
 	"golang.org/x/exp/slices"
 )
 
@@ -58,6 +59,10 @@ func Convert(amount string, rate float64, useJPUnits bool) (string, error) {
 
 	if slices.Contains([]string{"c", "f"}, currency) {
 		return temperatureconverter.ConvertTemperature(currency, num, useJPUnits), nil
+	}
+
+	if slices.Contains([]string{"kg", "lbs"}, currency) {
+		return weightconverter.ConvertWeight(currency, num, useJPUnits), nil
 	}
 
 	return "", errors.New("something bad happened")

@@ -9,7 +9,7 @@ import (
 
 var kgToLbRate = 2.205
 
-func ConvertDistance(unit string, amount float64, useJPUnits bool) string {
+func ConvertWeight(unit string, amount float64, useJPUnits bool) string {
 	switch unit {
 	case "kg":
 		return kgToLbs(amount, useJPUnits)
