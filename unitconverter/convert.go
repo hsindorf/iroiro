@@ -12,9 +12,11 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-// Convert takes an amount - either a numerical amount or a currency amount, and:
+// Convert takes an amount, and:
 //   - if it's a currency, converts the currency, and formats based on the target provided. e.g. ($100000, "jp") => "1万円"
 //   - if it's only a number, converts the number to the alternative format. Ignores the target and flag.
+//   - if it's a measurement, converts from
+//   - if it's a temperature, converts
 //
 // at the moment, only supports formats "12345", "$12345", or "12345円"
 func Convert(amount string, rate float64, useJPUnits bool) (string, error) {
@@ -53,6 +55,8 @@ func Convert(amount string, rate float64, useJPUnits bool) (string, error) {
 		return measurementconverter.ConvertDistance(currency, num, useJPUnits), nil
 	}
 
+	// TODO: temp
+
 	return "", errors.New("something bad happened")
 }
 
@@ -83,6 +87,7 @@ func ParseAmount(amount string) (string, string) {
 			twoCharSuffix == "km" ||
 			twoCharSuffix == "mi" {
 			return twoCharSuffix, string(runeAmount[:len(runeAmount)-2])
+			// TODO: add temp
 		}
 	}
 
