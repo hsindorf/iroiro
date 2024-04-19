@@ -9,6 +9,7 @@ import (
 	"github.com/hsindorf/iroiro/currencyconverter"
 	"github.com/hsindorf/iroiro/measurementconverter"
 	"github.com/hsindorf/iroiro/stringutils"
+	"github.com/hsindorf/iroiro/temperatureconverter"
 	"golang.org/x/exp/slices"
 )
 
@@ -55,7 +56,9 @@ func Convert(amount string, rate float64, useJPUnits bool) (string, error) {
 		return measurementconverter.ConvertDistance(currency, num, useJPUnits), nil
 	}
 
-	// TODO: temp
+	if slices.Contains([]string{"c", "f"}, currency) {
+		return temperatureconverter.ConvertTemperature(currency, num, useJPUnits), nil
+	}
 
 	return "", errors.New("something bad happened")
 }

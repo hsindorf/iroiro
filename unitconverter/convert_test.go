@@ -228,12 +228,12 @@ func TestConvert(t *testing.T) {
 		{
 			name:   "temperature, parses c",
 			amount: "10c",
-			want:   "50f",
+			want:   "50°F",
 		},
 		{
 			name:   "temperature, parses f",
 			amount: "10f",
-			want:   "-12.22c",
+			want:   "-12.22°C",
 		},
 		{
 			name:    "error if both currencies present",
