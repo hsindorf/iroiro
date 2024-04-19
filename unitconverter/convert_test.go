@@ -358,6 +358,18 @@ func Test_ParseAmount(t *testing.T) {
 			wantCurrency: "f",
 			wantAmount:   "1",
 		},
+		{
+			name:         "kg",
+			amount:       "1kg",
+			wantCurrency: "kg",
+			wantAmount:   "1",
+		},
+		{
+			name:         "lbs",
+			amount:       "1lbs",
+			wantCurrency: "lbs",
+			wantAmount:   "1",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
