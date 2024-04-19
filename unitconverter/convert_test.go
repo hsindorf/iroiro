@@ -226,6 +226,16 @@ func TestConvert(t *testing.T) {
 			want:   "16.09km",
 		},
 		{
+			name:   "temperature, parses c",
+			amount: "10c",
+			want:   "50°F",
+		},
+		{
+			name:   "temperature, parses f",
+			amount: "10f",
+			want:   "-12.22°C",
+		},
+		{
 			name:    "error if both currencies present",
 			amount:  "$100円",
 			want:    "",
@@ -334,6 +344,18 @@ func Test_ParseAmount(t *testing.T) {
 			name:         "mi",
 			amount:       "1mi",
 			wantCurrency: "mi",
+			wantAmount:   "1",
+		},
+		{
+			name:         "c",
+			amount:       "1c",
+			wantCurrency: "c",
+			wantAmount:   "1",
+		},
+		{
+			name:         "f",
+			amount:       "1f",
+			wantCurrency: "f",
 			wantAmount:   "1",
 		},
 	}
